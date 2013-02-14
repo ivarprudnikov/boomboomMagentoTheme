@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Boomboom_Navigation>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Boomboom_Navigation>
+    </modules>
+</config>

@@ -1,0 +1,50 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<div class="order-items order-details">
+<?php if($this->helper('giftmessage/message')->getIsMessagesAvailable('order', $this->getOrder())): ?>
+    <script type="text/javascript">
+    //<![CDATA[
+    function giftMessageToogle(giftMessageIdentifier)
+    {
+        var link = $('order-item-gift-message-link-'+giftMessageIdentifier);
+        var container = $('order-item-gift-message-'+giftMessageIdentifier);
+        var row = $('order-item-row-'+giftMessageIdentifier);
+    
+    
+        if(link.expanded) {
+            link.expanded = false;
+            link.removeClassName('expanded');
+            if(container.hasClassName('last')) {
+                row.addClassName('last');
+            }
+            container.hide();
+        } else {
+            link.expanded = true;
+            link.addClassName('expanded');
+            if(container.hasClassName('last')) {
+                row.removeClassName('last');
+            }
+            container.show();
+        }
+    
+        return false;
+    }
+    //]]>
+    </script>
+<?php endif; ?>
+    <?php echo $this->getChildHtml('creditmemo_items') ?>
+    <div class="buttons-set">
+        <p class="back-link"><a href="<?php echo $this->getBackUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back to My Orders') ?></a></p>
+    </div>
+</div>

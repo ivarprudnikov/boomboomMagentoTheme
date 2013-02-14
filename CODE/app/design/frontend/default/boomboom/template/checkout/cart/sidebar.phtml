@@ -1,0 +1,68 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ */
+
+?>
+
+<?php $_cartQty = $this->getSummaryCount() ?>
+<?php $_items = $this->getRecentItems() ?>
+<div id="mini-cart">
+	<?php if(count($_items)): ?>
+		<div class="mini-header">
+			<p class="count">
+				<?php echo $_cartQty; ?>
+				<?php echo ($_cartQty==1) ? $this->__('item') : $this->__('items'); ?>
+			</p>
+		</div>
+		<div class="mini-content">
+			<p class="block-subtitle"><?php echo $this->__('Recently added:') ?></p>
+			<ol id="cart-sidebar" class="mini-products-list">
+			<?php foreach($_items as $_item): ?>
+				<?php echo $this->getItemHtml($_item) ?>
+			<?php endforeach; ?>
+			</ol>
+			<div class="clear"></div>
+			<script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+		</div>
+    <?php else: ?>
+		<div class="mini-header">
+			<p class="count">0 items</p>
+		</div>
+		<div class="mini-content">
+			<p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+		</div>
+    <?php endif ?>
+	    <?php if ($_cartQty>0): ?>
+        <div class="mini-footer">
+            <p class="subtotal">
+                <span class="label"><?php echo $this->__('Cart Subtotal:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+                <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+                    <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+                <?php endif; ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+    <div class="actions">
+        <?php echo $this->getChildHtml('extra_actions') ?>
+		<button type="button" title="<?php echo $this->__('View Cart') ?>" class="button" id="minicart-view-button" onclick="setLocation('<?php echo $this->getUrl('checkout/cart') ?>')"><span><span><?php echo $this->__('View Cart') ?></span></span></button>
+        <button type="button" title="<?php echo $this->__('Checkout') ?>" class="button" id="minicart-checkout-button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+		<div class="clear"></div>
+    </div>
+    <?php endif ?>
+</div>

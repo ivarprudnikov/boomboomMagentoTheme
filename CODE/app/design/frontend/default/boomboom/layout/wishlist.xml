@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+-->
+<layout version="0.1.0">
+
+<!--
+Default layout, loads most of the pages
+-->
+
+    <default>
+
+        <reference name="top.wishlist">
+			<action method="addLink" translate="label title">
+				<label>Wishlist</label>
+				<url>wishlist/</url>
+				<title>Wishlist</title>
+				<prepare>true</prepare> <!-- make this true -->
+				<urlParams></urlParams> <!-- pass your base url here -->
+				<position>2</position>
+				<li/>
+				<a>id="top-link-wishlist"</a>
+			</action>
+        </reference>
+		
+		<reference name="header">
+			<block type="wishlist/customer_sidebar" name="wishlist_sidebar" as="topWishlistBlock" after="-" template="wishlist/sidebar.phtml"/>
+			<!-- <block type="core/template" name="wishlist_disabled" as="topWishlistDisabled" after="-" template="wishlist/wishlist-disabled.phtml"/> -->
+		</reference>
+
+    </default>
+
+<!--
+Inform potential costumer about whishlist activation
+-->
+	
+	<customer_logged_out>
+		<reference name="header">
+            <block type="core/template" name="wishlist_disabled" as="topWishlistDisabled" after="-" template="wishlist/wishlist-disabled.phtml"/>
+        </reference>
+    </customer_logged_out>
+	
+<!--
+Customer account pages, rendered for all tabs in dashboard
+-->
+
+    <customer_account>
+        <!-- Mage_Wishlist -->
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="wishlist" ifconfig="wishlist/general/active"><name>wishlist</name><path>wishlist/</path><label>My Wishlist</label></action>
+        </reference>
+    </customer_account>
+
+<!--
+Customer account home dashboard layout
+-->
+
+    <customer_account_index>
+
+        <reference name="right">
+            <action method="unsetChild"><name>wishlist</name></action>
+        </reference>
+    </customer_account_index>
+
+<!--
+Wishlist pages
+-->
+
+    <wishlist_index_index translate="label">
+        <label>Customer My Account My Wishlist</label>
+        <!-- Mage_Wishlist -->
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="wishlist/customer_wishlist" name="customer.wishlist" template="wishlist/view.phtml"/>
+        </reference>
+        <reference name="right">
+            <action method="unsetChild"><name>wishlist_customer_sidebar</name></action>
+        </reference>
+    </wishlist_index_index>
+
+    <wishlist_index_share translate="label">
+        <label>Customer My Account Wishlist Sharing Form</label>
+        <!-- Mage_Wishlist -->
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="wishlist/customer_sharing" name="wishlist.sharing" template="wishlist/sharing.phtml"/>
+        </reference>
+        <reference name="right">
+            <action method="unsetChild"><name>wishlist_customer_sidebar</name></action>
+        </reference>
+    </wishlist_index_share>
+    
+    <wishlist_index_configure translate="label">
+        <label>Configure Wishlist Item</label>
+        <update handle="catalog_product_view"/>
+        <reference name="product.info">
+            <block type="wishlist/item_configure" name="product.info.addto" as="addto" template="wishlist/item/configure/addto.phtml"/>
+        </reference>
+        <reference name="product.info.options.wrapper.bottom">
+            <action method="unsetChild"><name>product.info.addto</name></action>
+            <action method="append"><block>product.info.addto</block></action>
+        </reference>
+    </wishlist_index_configure>
+
+    <wishlist_shared_index translate="label">
+        <label>Customer Shared Wishlist View</label>
+        <!-- Mage_Wishlist -->
+        <reference name="content">
+            <block type="wishlist/share_wishlist" name="customer.wishlist" template="wishlist/shared.phtml"/>
+        </reference>
+    </wishlist_shared_index>
+</layout>

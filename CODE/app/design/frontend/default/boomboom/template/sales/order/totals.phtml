@@ -1,0 +1,39 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+/**
+ * @var $this Mage_Sales_Block_Order_Totals
+ * @see Mage_Sales_Block_Order_Totals
+ */
+?>
+<?php foreach ($this->getTotals() as $_code => $_total): ?>
+    <?php if ($_total->getBlockName()): ?>
+        <?php echo $this->getChildHtml($_total->getBlockName(), false); ?>
+    <?php else:?>
+    <tr class="<?php echo $_code?>">
+        <td <?php echo $this->getLabelProperties()?>>
+            <?php if ($_total->getStrong()):?>
+            <strong><?php echo $_total->getLabel()?></strong>
+            <?php else:?>
+            <?php echo $_total->getLabel()?>
+            <?php endif?>
+        </td>
+        <td <?php echo $this->getValueProperties()?>>
+            <?php if ($_total->getStrong()):?>
+            <strong><?php echo $this->formatValue($_total) ?></strong>
+            <?php else:?>
+            <?php echo $this->formatValue($_total) ?>
+            <?php endif?>
+        </td>
+    </tr>
+    <?php endif?>
+<?php endforeach?>

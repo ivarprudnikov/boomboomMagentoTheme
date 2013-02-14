@@ -1,0 +1,34 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+/* @var $this Mage_Reports_Block_Product_Viewed */
+?>
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+<div class="block block-list block-viewed">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Recently Viewed Products') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <ol id="recently-viewed-items">
+        <?php foreach ($_products as $_item): ?>
+            <li class="item">
+				<a class="product-image" href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($_item->getName(), null, true) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(90) ?>" width="90" height="90" alt="<?php echo $this->stripTags($_item->getName(), null, true) ?>" /></a>
+                <!--Item name
+				<p class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></a></p>
+				-->
+            </li>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('recently-viewed-items');</script>
+    </div>
+</div>
+<?php endif; ?>

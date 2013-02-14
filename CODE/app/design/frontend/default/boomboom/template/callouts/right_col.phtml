@@ -1,0 +1,26 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<div class="block block-banner">
+    <div class="block-content">
+        <?php if(strtolower(substr($this->getLinkUrl(),0,4))==='http'): ?>
+            <a href="<?php echo $this->getLinkUrl() ?>" title="<?php echo $this->__($this->getImgAlt()) ?>">
+        <?php elseif($this->getLinkUrl()): ?>
+            <a href="<?php echo $this->getUrl($this->getLinkUrl()) ?>" title="<?php echo $this->__($this->getImgAlt()) ?>">
+        <?php endif; ?>
+            <img src="<?php echo $this->getSkinUrl($this->getImgSrc()) ?>"<?php if(!$this->getLinkUrl()): ?> title="<?php echo $this->__($this->getImgAlt()) ?>"<?php endif; ?> alt="<?php echo $this->__($this->getImgAlt()) ?>" />
+        <?php if($this->getLinkUrl()): ?>
+        </a>
+        <?php endif ?>
+    </div>
+</div>

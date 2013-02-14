@@ -1,0 +1,26 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+/* @var $this Mage_Wishlist_Block_Customer_Wishlist_Render_Item_Price */
+?>
+
+<?php echo $this->getCleanProductPriceHtml(); ?>
+
+<?php /* @var $product Mage_Catalog_Model_Product */ ?>
+<?php $product = $this->getProduct(); ?>
+<?php $finalPrice = $product->getFinalPrice(1); ?>
+<?php if ($product->canConfigure()): ?>
+    <p class="configured-price">
+        <span class="price-label"><?php echo Mage::helper('wishlist')->__('Configured Price:') ?></span>
+        <span class="price"><?php echo Mage::helper('core')->currency($finalPrice, true, false); ?></span>
+    </p>
+<?php endif; ?>

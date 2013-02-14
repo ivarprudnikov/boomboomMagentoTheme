@@ -1,0 +1,30 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php
+/**
+ * Shopping cart totals template
+ *
+ * @see Mage_Checkout_Block_Cart_Totals
+ */
+?>
+<table id="shopping-cart-totals-table">
+    <col />
+    <col width="1" />
+    <tfoot>
+        <?php echo $this->renderTotals('footer'); ?>
+    </tfoot>
+    <tbody>
+        <?php echo $this->renderTotals(); ?>
+    </tbody>
+</table>

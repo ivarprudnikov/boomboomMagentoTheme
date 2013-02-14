@@ -1,0 +1,47 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<!--
+<div class="page-title">
+    <h1><?php echo $this->__('Shopping Cart is Empty') ?></h1>
+</div>
+-->
+<div class="cart-empty">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	<div class="grid_4 alpha">
+	
+		<img src="<?php echo $this->getSkinUrl('images/media/empty-cart.png') ?>" alt="You have no items in cart" title="You have no items in cart" />
+	
+	</div>
+	<div class="grid_8 omega">
+		<div class="cart-empty-options">
+			<h1>You could try:</h1>
+			<ul>
+			<li><a href="<?php echo $this->getUrl('/'); ?>">Go to homepage</a></li>
+			<li><a href="<?php echo $this->getUrl('shoppage'); ?>">Go to shop</a></li>
+			
+			</ul>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<br />
+	<br />
+	<br />
+	<div class="grid_6 alpha">
+		<?php echo $this->getChildHtml('cart_random_slider') ?>
+	</div>
+	<div class="grid_6 omega">
+		<?php echo $this->getChildHtml('cart_featured_slider') ?>
+	</div>
+	<div class="clear"></div>
+</div>

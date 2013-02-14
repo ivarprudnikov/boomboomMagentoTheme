@@ -1,0 +1,113 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+/*
+ * Duplicated from: /template/catalog/product/list.phtml
+ * Custom code and forced list mode, see parent for differences
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+?>
+<?php if(!$_productCollection->count()): ?>
+
+	<h2 class="title"><?php echo $this->__('Random Products') ?></h2>
+	<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+
+<?php else: ?>
+
+	<h2 class="title"><?php echo $this->__('Random Products') ?></h2>
+    <?php $_collectionSize = $_productCollection->count() ?>
+    <?php $_columnCount = $this->getColumnCount(); /* Set number of columns from XML layout */ ?>
+	<?php /* $_columnCount = 4;  Or set number of columns here */ ?>
+	
+	<div id="random-slider" class="mini-slider">
+	
+	<div class="slides_container">
+	
+    <?php $i=0; foreach ($_productCollection as $_product): ?>
+        <?php if ($i++%$_columnCount==0): ?>
+			<ul>
+		<?php endif ?>
+			
+		<li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+		
+			<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(215); ?>" width="200" height="200" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+			
+			<div class="item_description_box">
+			
+				<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+				
+				<?php /* if($_product->getRatingSummary()): */ ?>
+				<?php /* echo $this->getReviewsSummaryHtml($_product, 'short') */ ?>
+				<?php /* endif; */ ?>
+				
+				<div class="price_and_actions">
+					<?php echo $this->getPriceHtml($_product, true) ?>
+					<div class="select-add-to">
+						<select onchange="setLocation(this.value)">
+							<option>Add to:</option>
+							<option value="<?php if ($this->helper('wishlist')->isAllow()) : ?><?php echo $this->helper('wishlist')->getAddUrl($_product) ?><?php endif; ?>">Wishlist</option>
+							<option value="<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?><?php echo $_compareUrl ?><?php endif; ?>">Compare</option>
+							<?php if($_product->isSaleable()): ?>
+							<option value="<?php echo $this->getAddToCartUrl($_product) ?>">Cart</option>
+							<?php endif; ?>
+						</select>
+					</div>
+				</div>
+				
+				<div class="add_to_cart_button">
+					<?php if($_product->isSaleable()): ?>
+						<button type="button" title="<?php echo $this->__('Buy') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Buy') ?></span></span></button>
+					<?php else: ?>
+						<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+					<?php endif; ?>
+				</div>
+				
+			</div>
+			
+		</li>
+				
+		<?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+			</ul>
+			
+		<?php endif ?>
+		
+        <?php endforeach ?>
+        
+		<script type="text/javascript">
+			function changeLocation(menuObj)
+			{
+			var i = menuObj.selectedIndex;
+
+			if(i > 0)
+			{
+			window.location = menuObj.options[i].value;
+			}
+			}
+		</script>
+	</div><!-- end slides_container -->
+		
+	</div><!-- end mini-slider -->	
+    
+
+<?php endif; ?>

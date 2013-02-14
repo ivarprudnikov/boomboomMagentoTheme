@@ -1,0 +1,84 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+
+	<h2 class="title"><?php echo $this->__('New Products') ?></h2>
+	
+	<?php $_columnCount = $this->getColumnCount(); /* Set number of columns from XML layout */ ?>
+	<?php /* $_columnCount = 2;  Or set number of columns here */ ?>
+	
+	<div id="new-slider" class="mini-slider">
+	<div class="slides_container">	
+    <?php $i=0; foreach ($_products->getItems() as $_product): ?>
+		
+        <?php if ($i++%$_columnCount==0): ?>
+			
+			<ul>
+        <?php endif ?>
+		
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+			
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200) ?>" width="200" height="200" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a>
+				
+				<div class="item_description_box">
+				
+					<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h2>
+					
+					<?php /* echo $this->getReviewsSummaryHtml($_product, 'short') */ ?>
+					
+					<div class="price_and_actions">
+					
+						<?php echo $this->getPriceHtml($_product, true, '-new') ?>
+						
+						<div class="select-add-to">
+							<select onchange="setLocation(this.value)">
+								<option>Add to:</option>
+								<option value="<?php if ($this->helper('wishlist')->isAllow()) : ?><?php echo $this->helper('wishlist')->getAddUrl($_product) ?><?php endif; ?>">Wishlist</option>
+								<option value="<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?><?php echo $_compareUrl ?><?php endif; ?>">Compare</option>
+								
+								<?php if($_product->isSaleable()): ?>
+								<option value="<?php echo $this->getAddToCartUrl($_product) ?>">Cart</option>
+								<?php endif; ?>
+							</select>
+						</div>
+					</div>
+					
+					<div class="add_to_cart_button">
+						<?php if($_product->isSaleable()): ?>
+							<button type="button" title="<?php echo $this->__('Buy') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Buy') ?></span></span></button>
+						<?php else: ?>
+							<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+						<?php endif; ?>
+						
+					</div>
+					
+				</div>
+				
+            </li>
+			
+        <?php if ($i%$_columnCount==0 || $i==count($_products)): ?>
+			</ul>
+			
+        <?php endif ?>
+		
+    <?php endforeach; ?>
+	</div><!-- end slides_container -->
+	</div><!-- end mini-slider -->
+	
+<?php else: ?>
+
+	<h2 class="title"><?php echo $this->__('New Products') ?></h2>
+	<p class="note-msg"><?php echo $this->__('Currently now new products found.') ?></p>
+
+<?php endif; ?>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+-->
+<layout version="0.1.0">
+
+<!--
+Currency converter available globaly layout
+-->
+    <default>
+        <reference name="head">
+            <block type="core/template" name="optional_zip_countries" as="optional_zip_countries" template="directory/js/optional_zip_countries.phtml" />
+        </reference>
+		<reference name="header">
+            <block type="directory/currency" name="currency" as="currency" before="-" template="directory/currency.phtml"/>
+        </reference>
+    </default>
+
+    <!-- <catalog_category_default>
+        <reference name="header">
+            <block type="directory/currency" name="currency" as="currency" before="-" template="directory/currency.phtml"/>
+        </reference>
+    </catalog_category_default> -->
+
+<!--
+Category layered navigation layout
+-->
+
+   <!--  <catalog_category_layered>
+        <reference name="header">
+            <block type="directory/currency" name="currency" after="-" template="directory/currency.phtml"/>
+        </reference>
+    </catalog_category_layered> -->
+
+<!--
+Catalog Search layout
+-->
+
+    <!-- <catalogsearch_advanced_index>
+        <reference name="header">
+            <block type="directory/currency" name="right_currency" before="-" template="directory/currency.phtml"/>
+        </reference>
+    </catalogsearch_advanced_index> -->
+
+    <!-- <catalogsearch_result_index>
+        <reference name="header">
+            <block type="directory/currency" name="currency" before="-" template="directory/currency.phtml"/>
+        </reference>
+    </catalogsearch_result_index> -->
+
+    <!-- <catalogsearch_advanced_result>
+        <reference name="header">
+            <block type="directory/currency" name="right_currency" before="-" template="directory/currency.phtml"/>
+        </reference>
+    </catalogsearch_advanced_result> -->
+
+</layout>

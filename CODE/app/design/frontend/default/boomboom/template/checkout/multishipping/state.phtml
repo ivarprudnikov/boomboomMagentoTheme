@@ -1,0 +1,26 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php 
+/**
+ * Mustishipping state
+ * 
+ * @see Mage_Checkout_Block_Multishipping_State
+ */
+?>
+<ul class="checkout-progress" id="checkout-progress-state">
+<?php foreach ($this->getSteps() as $_step): ?>
+    <li title="<?php echo $_step->getLabel() ?>"<?php if($_step->getIsActive()): ?> class="active"<?php endif; ?>><span><?php echo $_step->getLabel() ?></span></li>
+<?php endforeach; ?>
+</ul>
+<script type="text/javascript">decorateGeneric($$('#checkout-progress-state li'), ['first','last']);</script>

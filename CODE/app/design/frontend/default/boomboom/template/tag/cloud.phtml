@@ -1,0 +1,25 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<div class="page-title">
+    <h1><?php echo $this->__('All Tags') ?></h1>
+</div>
+<?php if( sizeof($this->getTags()) > 0 ): ?>
+    <ul class="tags-list">
+        <?php foreach ($this->getTags() as $_tag): ?>
+            <li><a href="<?php echo $_tag->getTaggedProductsUrl() ?>" style="font-size:<?php echo $_tag->getRatio()*70+75 ?>%;"><?php echo $this->htmlEscape($_tag->getName()) ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p class="note-msg"><?php echo $this->__('There are no tags available.') ?></p>
+<?php endif; ?>

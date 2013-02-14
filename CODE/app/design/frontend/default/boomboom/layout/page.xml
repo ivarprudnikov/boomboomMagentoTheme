@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+-->
+<layout version="0.1.0">
+<!--
+Default layout, loads most of the pages
+-->
+
+    <default translate="label" module="page">
+        <label>All Pages</label>
+        <block type="page/html" name="root" output="toHtml" template="page/2columns-right.phtml">
+
+            <block type="page/html_head" name="head" as="head">
+				
+				<!-- CORE JS else in the bottom -->
+				
+                <action method="addJs"><script>prototype/prototype.js</script></action>
+                <action method="addJs" ifconfig="dev/js/deprecation"><script>prototype/deprecation.js</script></action>
+				<action method="addJs"><script>prototype/validation.js</script></action>
+				<action method="addJs"><script>varien/js.js</script></action>
+                <action method="addJs"><script>varien/form.js</script></action>
+				<action method="addJs"><script>mage/translate.js</script></action>
+                <action method="addJs"><script>mage/cookies.js</script></action>
+				<action method="addJs"><script>lib/ccard.js</script></action>
+				<action method="addJs"><script>scriptaculous/effects.js</script></action>
+				
+				<!-- disabling scriptaculous libraries -->
+                <!-- <action method="addJs"><script>scriptaculous/builder.js</script></action> -->
+                <!-- <action method="addJs"><script>scriptaculous/dragdrop.js</script></action> -->
+                <action method="addJs"><script>scriptaculous/controls.js</script></action>
+                <!-- <action method="addJs"><script>scriptaculous/slider.js</script></action> -->
+				<!-- menu made without the need of menu.js -->
+                <!--<action method="addJs"><script>varien/menu.js</script></action>-->
+				<!--<action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>-->
+                <!--<action method="addItem"><type>skin_js</type><name>js/ie6.js</name><params/><if>lt IE 7</if></action>-->
+				
+				<!-- additional JS -->
+			
+				<action method="addItem"><type>skin_js</type><name>js/jquery-1.6.2.min.js</name></action>
+				<action method="addItem"><type>skin_js</type><name>js/slides.min.jquery.js</name></action>
+				<action method="addItem"><type>skin_js</type><name>js/jquery.run.js</name></action>
+				<action method="addItem"><type>skin_js</type><name>js/selectivizr-min.js</name></action>
+				
+				
+				<!-- CSS -->
+				
+				<!-- <action method="addCss"><stylesheet>css/print.css</stylesheet><params>media="print"</params></action> -->
+                <!--<action method="addCss"><stylesheet>css/widgets.css</stylesheet></action>-->
+				
+				<action method="addItem"><type>skin_css</type><name>css/fonts.css</name></action>
+				<action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
+
+            </block>
+			
+			<!-- HEADER -->
+			
+            <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
+                <label>Page Top</label>
+            </block>
+			
+            <block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />
+
+            <block type="page/html_header" name="header" as="header">
+			
+				<!-- navigation -->
+                <block type="core/text_list" name="top.menu" as="topMenu" translate="label">
+                    <label>Navigation Bar</label>
+                </block>
+				
+				<!-- search -->
+				<block type="page/html_wrapper" name="top.bar" as="topBar" translate="label">
+                    <label>Search</label>
+                </block>
+				<block type="page/template_links" name="advanced.link" as="advancedLink" />
+
+				<!-- account links -->
+				<block type="page/template_links" name="account.links" as="accountLinks" />
+				
+				<!-- help/wishlist/cart links -->
+				<block type="page/template_links" name="top.cart" as="topCart"/>
+				<block type="page/template_links" name="top.wishlist" as="topWishlist"/>
+				<block type="page/template_links" name="top.care" as="topCare"/>
+				<!-- preload customer care block -->
+				
+				<!-- Shop options -->
+				<block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/>
+				<block type="page/switch" name="store_switcher" as="store_switcher" template="page/switch/stores.phtml"/>
+				
+			</block>
+			
+			<!-- Breadcrumbs -->
+			<block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+			
+            <!-- system messages -->
+			<block type="core/messages" name="global_messages" as="global_messages"/>
+			<block type="core/messages" name="messages" as="messages"/>
+			
+			<!-- CONTENT and COLUMNS -->
+			
+            <block type="core/text_list" name="left" as="left" translate="label">
+                <label>Left Column</label>
+            </block>
+			
+            <block type="core/text_list" name="content" as="content" translate="label">
+                <label>Main Content Area</label>
+            </block>
+			
+            <block type="core/text_list" name="right" as="right" translate="label">
+                <label>Right Column</label>
+            </block>
+			
+			<!-- Special block for custom callouts before footer -->
+			<block type="core/text_list" name="before.footer" as="before-footer" translate="label" />
+			
+			<!-- FOOTER -->
+
+            <block type="page/html_footer" name="footer" as="footer" template="page/html/footer.phtml">
+                <block type="page/html_wrapper" name="bottom.container" as="bottomContainer" translate="label">
+                    <label>Page Footer</label>
+                    <action method="setElementClass"><value>bottom-container</value></action>
+                </block>
+				
+                <block type="page/template_links" name="footer_links" as="footer_links" template="page/template/links.phtml" translate="label">
+					<label>Footer links</label>
+				</block>
+				
+            </block>
+			
+			<!-- ADDITIONAL JAVASCRIPT -->
+
+            <block type="page/html_footer_javascript" name="footer_javascript" as="footer_javascript" template="page/html/footer_javascript.phtml" >
+			
+			
+			</block>
+			
+            <block type="core/text_list" name="before_body_end" as="before_body_end" translate="label">
+                <label>Page Bottom</label>
+            </block>
+        </block>
+
+        <block type="core/profiler" output="toHtml" name="core_profiler"/>
+    </default>
+
+    <print translate="label" module="page">
+        <label>All Pages (Print Version)</label>
+        <!-- Mage_Page -->
+        <block type="page/html" name="root" output="toHtml" template="page/print.phtml">
+
+            <block type="page/html_head" name="head" as="head">
+                <action method="addJs"><script>prototype/prototype.js</script></action>
+                <action method="addJs"><script>mage/translate.js</script></action>
+                <!-- <action method="addJs"><script>lib/ccard.js</script></action> -->
+                <action method="addJs"><script>prototype/validation.js</script></action>
+                <action method="addJs"><script>varien/js.js</script></action>
+
+                <action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
+                <action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>
+                <!-- <action method="addCss"><stylesheet>css/widgets.css</stylesheet></action> -->
+                <action method="addCss"><stylesheet>css/print.css</stylesheet><params>media="print"</params></action>
+
+                <!-- <action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action> -->
+                <!-- <action method="addItem"><type>skin_js</type><name>js/ie6.js</name><params/><if>lt IE 7</if></action> -->
+
+            </block>
+
+            <block type="core/text_list" name="content" as="content" translate="label">
+                <label>Main Content Area</label>
+            </block>
+
+        </block>
+    </print>
+
+     <!-- Custom page layout handles -->
+    <page_empty translate="label">
+        <label>All Empty Layout Pages</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>empty</name></action>
+        </reference>
+    </page_empty>
+
+    <page_one_column translate="label">
+        <label>All One-Column Layout Pages</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>one_column</name></action>
+        </reference>
+    </page_one_column>
+
+    <page_two_columns_left translate="label">
+        <label>All Two-Column Layout Pages (Left Column)</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>two_columns_left</name></action>
+        </reference>
+    </page_two_columns_left>
+
+    <page_two_columns_right translate="label">
+        <label>All Two-Column Layout Pages (Right Column)</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>two_columns_right</name></action>
+        </reference>
+    </page_two_columns_right>
+
+    <page_three_columns translate="label">
+        <label>All Three-Column Layout Pages</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/3columns.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>three_columns</name></action>
+        </reference>
+    </page_three_columns>
+	
+	<!-- More custom layouts. They remain active in this theme, although if you will not activate them through module you will not see the new layout choice in admin. Module comes with this theme so no worries. -->
+	
+	<page_three_columns_left_lr translate="label">
+        <label>All Three-Column Layout Pages (Left-Right Columns Left)</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/3columns-left-lr.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>three_columns_left_lr</name></action>
+        </reference>
+    </page_three_columns_left_lr>
+	
+	<page_three_columns_left_rl translate="label">
+        <label>All Three-Column Layout Pages (Right-Left Columns Left)</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/3columns-left-rl.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>three_columns_left_rl</name></action>
+        </reference>
+    </page_three_columns_left_rl>
+	
+	<page_three_columns_right_lr translate="label">
+        <label>All Three-Column Layout Pages (Left-Right Columns Right)</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/3columns-right-lr.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>three_columns_right_lr</name></action>
+        </reference>
+    </page_three_columns_right_lr>
+	
+	<page_three_columns_right_rl translate="label">
+        <label>All Three-Column Layout Pages (Left-Right Columns Right)</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/3columns-right-rl.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <action method="setLayoutCode"><name>three_columns_right_rl</name></action>
+        </reference>
+    </page_three_columns_right_rl>
+</layout>

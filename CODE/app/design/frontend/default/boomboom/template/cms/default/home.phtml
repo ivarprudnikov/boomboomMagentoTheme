@@ -1,0 +1,41 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<div id="home-slider">
+	<div class="slides_container">
+		
+		<a href=""><img src="<?php echo $this->getSkinUrl('images/home-slideshow/home-slides-01.png') ?>" /></a>
+		<a href=""><img src="<?php echo $this->getSkinUrl('images/home-slideshow/home-slides-02.png') ?>" /></a>
+		<a href=""><img src="<?php echo $this->getSkinUrl('images/home-slideshow/home-slides-03.png') ?>" /></a>
+		<a href=""><img src="<?php echo $this->getSkinUrl('images/home-slideshow/home-slides-04.png') ?>" /></a>
+		<a href=""><img src="<?php echo $this->getSkinUrl('images/home-slideshow/home-slides-05.png') ?>" /></a>
+		
+	</div>
+	<a href="#" class="prev"><img src="<?php echo $this->getSkinUrl()?>images/slides-js/arrow-prev.png" alt="Arrow Prev"></a>
+	<a href="#" class="next"><img src="<?php echo $this->getSkinUrl()?>images/slides-js/arrow-next.png" alt="Arrow Next"></a>
+</div>
+	
+
+<?php /* Product lists */ ?>
+	<div class="grid_9 alpha">
+		<?php echo $this->getChildHtml('home_random_slider') ?>
+	</div>
+	<div class="grid_3 omega">
+		<?php echo $this->getChildHtml('home_promo_1') ?>
+	</div>
+	<div class="grid_6 alpha">
+		<?php echo $this->getChildHtml('home_new_slider') ?>
+	</div>
+	<div class="grid_6 omega">
+		<?php echo $this->getChildHtml('home_featured_slider') ?>
+	</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+			<Boomboom_Navigation>
+				<version>0.1.0</version>
+			</Boomboom_Navigation>
+	</modules>
+    <global>
+		<blocks>
+            <boomboom>
+				<class>Boomboom_Navigation_Block</class>
+			</boomboom>
+		</blocks>
+	</global>
+</config>

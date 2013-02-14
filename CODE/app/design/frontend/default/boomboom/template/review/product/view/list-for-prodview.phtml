@@ -1,0 +1,60 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+
+<?php $_reviewItems = $this->getReviewsCollection()->getItems();?>
+<div class="box-collateral box-reviews" id="customer-reviews">
+    <?php if (count($_reviewItems)):?>
+	
+        <h2><?php echo $this->__('Customer Reviews') ?></h2>
+        <?php echo $this->getChildHtml('toolbar') ?>
+        <dl>
+        <?php foreach ($_reviewItems as $_review):?>
+		
+            <dt>
+				<?php /* changed URL method manualy, because - Mage\Review\Block\Product\View - getReviewUrl method does not specify exact location for reviews and if used in product view gives product ID instead of review */ ?>
+                <a href="<?php echo Mage::getUrl('review/product/view', array('id' => ($_review->getId()))) ?>"><?php echo $this->htmlEscape($_review->getTitle()) ?></a> <?php echo $this->__('Review by <span>%s</span>', $this->htmlEscape($_review->getNickname())) ?>
+            </dt>
+			
+            <dd>
+                <?php $_votes = $_review->getRatingVotes(); ?>
+                <?php if (count($_votes)): ?>
+                <table class="ratings-table">
+                    <col width="1" />
+                    <col />
+                    <tbody>
+                        <?php foreach ($_votes as $_vote): ?>
+                        <tr>
+                            <th><?php echo $this->escapeHtml($_vote->getRatingCode()) ?></th>
+                            <td>
+                                <div class="rating-box">
+                                    <div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php endif; ?>
+                <?php echo nl2br($this->htmlEscape($_review->getDetail())) ?>
+                <small class="date"><?php echo $this->__('(Posted on %s)', $this->formatDate($_review->getCreatedAt()), 'long') ?></small>
+            </dd>
+        <?php endforeach; ?>
+        </dl>
+		
+	<?php else:?>
+	
+	<div class="std" >Currently there are no reviews for this product.</div>
+	
+    <?php endif;?>
+</div>

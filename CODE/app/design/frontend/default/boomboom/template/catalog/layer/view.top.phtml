@@ -1,0 +1,43 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @see Mage_Catalog_Block_Layer_View
+ */
+?>
+<?php if($this->canShowBlock()): ?>
+	<div class="layer-filter">
+		<?php /* Active filters */ ?>
+		<?php echo $this->getStateHtml() ?>
+		<?php /* Available filters */ ?>
+		<div class="available-filters">
+			<div class="layer-filter-title"><?php echo $this->__('Filter by:') ?></div>
+			<?php if($this->canShowOptions()): ?>
+						<ul id="top-layer-filter">
+							<?php $_filters = $this->getFilters() ?>
+							<?php foreach ($_filters as $_filter): ?>
+							<?php if($_filter->getItemsCount()): ?>
+								<li class="<?php echo $this->__($_filter->getName()) ?>"><span><?php echo $this->__($_filter->getName()) ?></span>
+									<?php echo $_filter->getHtml() ?>
+								</li>
+							<?php endif; ?>
+							<?php endforeach; ?>
+						</ul>
+			<?php endif; ?>
+			<div class="clear"></div>
+		</div>
+	</div>
+<?php endif; ?>

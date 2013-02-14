@@ -1,0 +1,25 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<div class="page-title">
+	<h1><?php echo $this->getTitle() ?></h1>
+</div>
+<div class="page-sitemap p20 back-color-light">
+	<div id="sitemap_top_links">
+		<?php echo $this->getChildHtml('links') ?>
+	</div>
+	<?php echo $this->getChildHtml('pager_top') ?>
+	<?php echo $this->getChildHtml('sitemap') ?>
+	<?php echo $this->getChildHtml('links') ?>
+	<?php echo $this->getChildHtml('pager_bottom') ?>
+</div>

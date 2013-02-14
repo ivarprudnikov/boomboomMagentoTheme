@@ -1,0 +1,53 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+ 
+/* @var $this Mage_Wishlist_Block_Customer_Sidebar */
+?>
+<?php  $_wQty = $this->__('%d', $this->helper('wishlist')->getItemCount()) ?>
+<div id="mini-wishlist">
+	<?php if ($this->hasWishlistItems()): ?>
+		<div class="mini-header">
+			<p><?php echo $_wQty ?><?php echo ($_wQty==1) ? $this->__(' item') : $this->__(' items') ?></p>
+		</div>
+		<div class="mini-content">
+			<p class="block-subtitle"><?php echo $this->__('Last Added:') ?></p>
+			<ol class="mini-products-list" id="wishlist-sidebar">
+			 <?php foreach ($this->getWishlistItems() as $_item): ?>
+				<?php $product = $_item->getProduct(); ?>
+				<li class="item">
+					<a href="<?php echo $this->getProductUrl($_item) ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail')->resize(80); ?>" width="80" height="80" alt="<?php echo $this->htmlEscape($product->getName()) ?>" /></a>
+					<div class="product-details">
+						<a href="<?php echo $this->getItemRemoveUrl($_item) ?>" title="<?php echo $this->__('Remove This Item') ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to remove this item from the wishlist?') ?>');" class="btn-remove"><?php echo $this->__('Remove This Item') ?></a>
+						<p class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->htmlEscape($product->getName()) ?></a></p>
+						<?php echo $this->getPriceHtml($product, false, '-wishlist') ?>
+						<?php if ($product->isSaleable() && $product->isVisibleInSiteVisibility()): ?>
+							<a href="<?php echo $this->getAddToCartItemUrl($_item) ?>" class="link-cart"><?php echo $this->__('Add to Cart') ?></a>
+						<?php endif; ?>
+					</div>
+					<div class="clear"></div>
+				</li>
+				<div class="clear"></div>
+			<?php endforeach; ?>
+			</ol>
+		</div>
+		<script type="text/javascript">decorateList('wishlist-sidebar');</script>
+	<?php else: ?>
+		<div class="mini-header"></div>
+		<div class="mini-content">
+			<p class="empty"><?php echo $this->__('You have no items in your wishlist.') ?></p>
+		</div>
+    <?php endif ?>
+	<div class="mini-footer">
+		<a href="<?php echo $this->helper('wishlist')->getListUrl() ?>"><?php echo $this->__('Go to Wishlist') ?></a>
+	</div>
+</div>

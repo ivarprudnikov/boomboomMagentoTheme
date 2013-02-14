@@ -1,0 +1,83 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<div id="loading-page">Loading</div>
+<div class="header-container">
+    <div class="header">
+		<!-- LOGO -->
+		<div id="logo">
+			<a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
+				<img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" />
+				<div class="imageAlt"><?php echo $this->getLogoAlt() ?></div>
+			</a>
+		</div>
+		<!-- NAVIGATION -->
+		<div id="navigation">
+			<!-- link to shop page with all store products -->
+			<a href="<?php echo $this->getUrl('shoppage') ?>" id="online-shop-button" >Online Shop</a>
+			<!-- link to open mega menu when on hover -->
+			<div id="menu-open">
+				<a class="arrow"><img src="<?php echo $this->getSkinUrl('images/arrow-down.png') ?>" alt="<?php echo $this->__('Open menu') ?>" class="v-middle" /></a>
+				<?php echo $this->getChildHtml('topMenu') ?>
+			</div>
+		</div>
+		<!-- SEARCH / ADVANCED SEARCH -->
+		<div id="top-search">
+			<?php echo $this->getChildHtml('topBar') ?>
+			<?php echo $this->getChildHtml('advancedLink') ?>
+		</div>
+		<!-- ACCOUNT LINKS / WELCOME MSG -->
+		<div id="top-account">
+			<!-- welcome text disabled -->
+			<?php /* echo $this->getWelcome() */ ?>
+			<?php echo $this->getChildHtml('accountLinks') ?>
+			<?php echo $this->getChildHtml('mini_login') ?>
+		</div>
+		<!-- TOP BIG LINKS CART / WISHLIST / CUSTOMER CARE -->
+		<div id="top-links">
+			<div id="top-cart">
+				<?php echo $this->getChildHtml('topCart') ?>
+					<div id="top-cart-menu">
+						<?php echo $this->getChildHtml('topCartBlock') ?>
+					</div>
+			</div>
+			<div id="top-wishlist">
+				<?php echo $this->getChildHtml('topWishlist') ?>
+					<div id="top-wishlist-menu">
+						<?php echo $this->getChildHtml('topWishlistBlock') ?>
+						<?php echo $this->getChildHtml('topWishlistDisabled') ?>
+					</div>
+			</div>
+			<div id="top-care">
+				<?php echo $this->getChildHtml('topCare') ?>
+					<div id="top-care-menu">
+						<?php echo $this->getChildHtml('topCareBlock') ?>
+					</div>
+			</div>
+		</div>
+		<!-- STORE OPTIONS -->
+		<div id="shop-options">
+			<a href="#" id="shop-options-button" >Shop options</a>
+			<div id="shop-options-popup">
+				<!-- appears when you have more languages -->
+				<?php echo $this->getChildHtml('store_language') ?>
+				<!-- appears when you have more stores*/categories -->
+				<?php echo $this->getChildHtml('store_switcher') ?>
+				<!--custom-->
+				<?php echo $this->getChildHtml('currency') ?>
+				
+				<?php echo $this->getChildHtml('color_switcher') ?>
+			</div>
+		</div>
+    </div>
+</div>

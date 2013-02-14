@@ -1,0 +1,81 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php
+/**
+ * Customer login form template
+ *
+ * @see Mage_Customer_Block_Form_Login
+ */
+?>
+<div class="account-login">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
+        <div class="register-login-holder">
+			<div class="grid_4 alpha">
+				<h2><?php echo $this->__('New Customer') ?></h2>
+				<div class="new-customers p20 back-color">
+					<div class="content">
+						<ul class="login-nc p20">
+							<h3>Create an account and enjoy:</h3>
+							<li>Offers and discounts</li>
+							<li>Using multiple shipping addresses</li>
+							<li>Faster checkout process</li>
+							<li>Track orders</li>
+							<li>Create wishlists</li>
+						</ul>
+					</div>
+					<div class="buttons-set">
+						<button type="button" title="<?php echo $this->__('Register') ?>" class="button" onclick="window.location='<?php echo $this->getCreateAccountUrl() ?>';"><span><span><?php echo $this->__('Register') ?></span></span></button>
+					</div>
+				</div>
+			</div>
+            <div class="grid_4 ">
+				<h2><?php echo $this->__('<< >>') ?></h2>
+				
+            </div>
+            <div class="grid_4 omega">
+				<h2><?php echo $this->__('Registered Customer') ?></h2>
+				<div class="registered-customers p20 back-color">
+					<div class="content">
+						<ul class="form-list">
+							<li>
+								<label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+								<div class="input-box">
+									<input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+								</div>
+							</li>
+							<li>
+								<label for="pass" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+								<div class="input-box">
+									<input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+								</div>
+							</li>
+						</ul>
+						<p class="required"><?php echo $this->__('* Required Fields') ?></p>
+						<a href="<?php echo $this->getForgotPasswordUrl() ?>" class="forgot-password"><?php echo $this->__('Forgot Password?') ?></a>
+					</div>
+					<div class="buttons-set">
+						<button type="submit" class="button" title="<?php echo $this->__('Sign In') ?>" name="send" id="send2"><span><span><?php echo $this->__('Sign In') ?></span></span></button>
+					</div>
+				</div>
+            </div>
+			<div class="clear"></div>
+        </div>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var dataForm = new VarienForm('login-form', true);
+    //]]>
+    </script>
+</div>

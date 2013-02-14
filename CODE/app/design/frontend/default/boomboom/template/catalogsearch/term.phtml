@@ -1,0 +1,30 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<div class="popular-terms p20 back-color-light m10-t">
+	
+	<h2><?php echo $this->__('Popular Search Terms') ?></h2>
+	
+	<?php if( sizeof($this->getTerms()) > 0 ): ?>
+		<ul class="tags-list">
+			<?php foreach ($this->getTerms() as $_term): ?>
+				<li><a href="<?php echo $this->getSearchUrl($_term) ?>" style="font-size:<?php echo $_term->getRatio()*70+75 ?>%;"><?php echo $this->htmlEscape($_term->getName()) ?></a></li>
+			<?php endforeach; ?>
+		</ul>
+	<?php else: ?>
+		<!-- 
+		commented out as long terms are in advanced search page
+		<p class="note-msg"><?php echo $this->__('There are no search terms available.'); ?></p> 
+		-->
+	<?php endif; ?>
+</div>

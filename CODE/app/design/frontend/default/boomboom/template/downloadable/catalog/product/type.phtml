@@ -1,0 +1,29 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+/**
+ * Downloadable product type
+ *
+ * @see Mage_Downloadable_Block_Catalog_Product_View_Type
+ */
+?>
+<?php $_product = $this->getProduct() ?>
+
+<?php if($_product->isSaleable()): ?>
+    <p class="availability in-stock"><?php /* echo $this->__('Availability:') */ ?> <span><?php echo $this->__('In stock') ?></span></p>
+<?php else: ?>
+    <p class="availability out-of-stock"><?php /* echo $this->__('Availability:') */ ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+<?php endif; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>
+<?php echo $this->getPriceHtml($_product) ?>
+<?php echo $this->getChildHtml('samples') ?>

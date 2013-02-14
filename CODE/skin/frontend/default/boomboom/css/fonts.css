@@ -1,0 +1,180 @@
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+/* Fonts ----------------------------------------------------------------------------------------------------*/
+
+@font-face {
+    font-family: 'Francois One'; /* Default */
+    src: url('../fonts/francoisone/francoisone-webfont.eot');
+    src: url('../fonts/francoisone/francoisone-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/francoisone/francoisone-webfont.woff') format('woff'),
+         url('../fonts/francoisone/francoisone-webfont.ttf') format('truetype'),
+         url('../fonts/francoisone/francoisone-webfont.svg#FrancoisOneRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AmaranthRegular';
+    src: url('../fonts/amaranth/Amaranth-webfont.eot');
+    src: url('../fonts/amaranth/Amaranth-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/amaranth/Amaranth-webfont.woff') format('woff'),
+         url('../fonts/amaranth/Amaranth-webfont.ttf') format('truetype'),
+         url('../fonts/amaranth/Amaranth-webfont.svg#AmaranthRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'AmaranthItalic';
+    src: url('../fonts/amaranth/Amaranth-Italic-webfont.eot');
+    src: url('../fonts/amaranth/Amaranth-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/amaranth/Amaranth-Italic-webfont.woff') format('woff'),
+         url('../fonts/amaranth/Amaranth-Italic-webfont.ttf') format('truetype'),
+         url('../fonts/amaranth/Amaranth-Italic-webfont.svg#AmaranthItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'AmaranthBold';
+    src: url('../fonts/amaranth/Amaranth-Bold-webfont.eot');
+    src: url('../fonts/amaranth/Amaranth-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/amaranth/Amaranth-Bold-webfont.woff') format('woff'),
+         url('../fonts/amaranth/Amaranth-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/amaranth/Amaranth-Bold-webfont.svg#AmaranthBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'AmaranthBoldItalic';
+    src: url('../fonts/amaranth/Amaranth-BoldItalic-webfont.eot');
+    src: url('../fonts/amaranth/Amaranth-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/amaranth/Amaranth-BoldItalic-webfont.woff') format('woff'),
+         url('../fonts/amaranth/Amaranth-BoldItalic-webfont.ttf') format('truetype'),
+         url('../fonts/amaranth/Amaranth-BoldItalic-webfont.svg#AmaranthBoldItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BebasRegular';
+    src: url('../fonts/Bebas/BEBAS___-webfont.eot');
+    src: url('../fonts/Bebas/BEBAS___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Bebas/BEBAS___-webfont.woff') format('woff'),
+         url('../fonts/Bebas/BEBAS___-webfont.ttf') format('truetype'),
+         url('../fonts/Bebas/BEBAS___-webfont.svg#BebasRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'CarringtonRegular';
+    src: url('../fonts/Carrington/Carrington-webfont.eot');
+    src: url('../fonts/Carrington/Carrington-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Carrington/Carrington-webfont.woff') format('woff'),
+         url('../fonts/Carrington/Carrington-webfont.ttf') format('truetype'),
+         url('../fonts/Carrington/Carrington-webfont.svg#CarringtonRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Panefresco1wtRegular';
+    src: url('../fonts/panefresco/Panefresco1wtRegular-webfont.eot');
+    src: url('../fonts/panefresco/Panefresco1wtRegular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/panefresco/Panefresco1wtRegular-webfont.woff') format('woff'),
+         url('../fonts/panefresco/Panefresco1wtRegular-webfont.ttf') format('truetype'),
+         url('../fonts/panefresco/Panefresco1wtRegular-webfont.svg#Panefresco1wtRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Panefresco1wtItalic';
+    src: url('../fonts/panefresco/Panefresco1wtItalic-webfont.eot');
+    src: url('../fonts/panefresco/Panefresco1wtItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/panefresco/Panefresco1wtItalic-webfont.woff') format('woff'),
+         url('../fonts/panefresco/Panefresco1wtItalic-webfont.ttf') format('truetype'),
+         url('../fonts/panefresco/Panefresco1wtItalic-webfont.svg#Panefresco1wtItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Panefresco500wtRegular';
+    src: url('../fonts/panefresco/Panefresco500wtRegular-webfont.eot');
+    src: url('../fonts/panefresco/Panefresco500wtRegular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/panefresco/Panefresco500wtRegular-webfont.woff') format('woff'),
+         url('../fonts/panefresco/Panefresco500wtRegular-webfont.ttf') format('truetype'),
+         url('../fonts/panefresco/Panefresco500wtRegular-webfont.svg#Panefresco500wtRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Panefresco500wtItalic';
+    src: url('../fonts/panefresco/Panefresco500wtItalic-webfont.eot');
+    src: url('../fonts/panefresco/Panefresco500wtItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/panefresco/Panefresco500wtItalic-webfont.woff') format('woff'),
+         url('../fonts/panefresco/Panefresco500wtItalic-webfont.ttf') format('truetype'),
+         url('../fonts/panefresco/Panefresco500wtItalic-webfont.svg#Panefresco500wtItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Panefresco999wtRegular';
+    src: url('../fonts/panefresco/Panefresco999wtRegular-webfont.eot');
+    src: url('../fonts/panefresco/Panefresco999wtRegular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/panefresco/Panefresco999wtRegular-webfont.woff') format('woff'),
+         url('../fonts/panefresco/Panefresco999wtRegular-webfont.ttf') format('truetype'),
+         url('../fonts/panefresco/Panefresco999wtRegular-webfont.svg#Panefresco999wtRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Panefresco999wtItalic';
+    src: url('../fonts/panefresco/Panefresco999wt-Italic-webfont.eot');
+    src: url('../fonts/panefresco/Panefresco999wt-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/panefresco/Panefresco999wt-Italic-webfont.woff') format('woff'),
+         url('../fonts/panefresco/Panefresco999wt-Italic-webfont.ttf') format('truetype'),
+         url('../fonts/panefresco/Panefresco999wt-Italic-webfont.svg#Panefresco999wtItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'WCWunderbachBtaDemiBold';
+    src: url('../fonts/WC-Wunderbach-Bta/WC_Wunderbach-webfont.eot');
+    src: url('../fonts/WC-Wunderbach-Bta/WC_Wunderbach-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/WC-Wunderbach-Bta/WC_Wunderbach-webfont.woff') format('woff'),
+         url('../fonts/WC-Wunderbach-Bta/WC_Wunderbach-webfont.ttf') format('truetype'),
+         url('../fonts/WC-Wunderbach-Bta/WC_Wunderbach-webfont.svg#WCWunderbachBtaDemiBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

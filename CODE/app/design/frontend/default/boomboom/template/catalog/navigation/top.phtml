@@ -1,0 +1,93 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Catalog_Block_Navigation
+ */
+?>
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+
+<?php /* Lets get the number of active categories and apply it as a class to know how wide menu should be */ ?>
+
+<?php $activeCategories = array(); ?>
+<?php foreach ($this->getStoreCategories() as $child) {
+            if ($child->getIsActive()) {
+                $activeCategories[] = $child;
+            }
+        }
+?>
+<?php $activeCategoriesCount = count($activeCategories); /* save number in memory */ ?>
+
+<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+<?php if($_menu): ?>
+<div class="nav-container <?php echo 'children'.$activeCategoriesCount?>"> 
+<?php /* here you should specify how many additional top link blocks you have inserted below. In this case there are commented 2 additional link blocks below so we should write -2 and css is already made for it and calculates container width, you could make it 1 or 2 or 3 or 4 or 5. Again if you will make the number too big then you will have to modify CSS file on your own */ ?>
+
+    <ul id="nav" >
+	
+		<!-- top link 1 -->
+		<!-- <li> -->
+			<!-- <a href="#">About us</a> -->
+			<!-- top link 1 sublinks -->
+			<!-- <ul> -->
+				<!-- <li><a href="#">New sub-link</a></li> -->
+				<!-- <li><a href="#">New sub-link</a></li> -->
+				<!-- <li><a href="#">New sub-link</a></li> -->
+				<!-- <li><a href="#">New sub-link</a></li> -->
+			<!-- </ul> -->
+		<!-- </li> -->
+	
+
+
+        <?php echo $_menu ?> <!-- You could add links in front of this function in case you want them to be before catalog links -->
+		
+
+		
+		<!-- top link 2 -->
+		<!-- <li> -->
+			<!-- <a href="<?php echo $this->getUrl() ?>contacts">Contacts</a> -->
+			<!-- top link 2 sublinks -->
+			<!-- <ul> -->
+				<!-- <li><a href="#">New sub-link</a></li> -->
+				<!-- <li> -->
+					<!-- <a href="#">New sub-link</a> -->
+					<!-- top link 2 sub-sublinks -->
+					<!-- <ul> -->
+						<!-- <li><a href="#">New sub-link</a></li> -->
+						<!-- <li><a href="#">New sub-link</a></li> -->
+						<!-- <li><a href="#">New sub-link</a></li> -->
+						<!-- <li><a href="#">New sub-link</a></li> -->
+					<!-- </ul> -->
+				<!-- </li> -->
+				<!-- <li><a href="#">New sub-link</a></li> -->
+			<!-- </ul> -->
+		<!-- </li> -->
+		<!-- END new block of links -->
+		
+    </ul>
+	
+	<div class="clearfix"></div>
+	
+
+</div>
+<?php endif ?>

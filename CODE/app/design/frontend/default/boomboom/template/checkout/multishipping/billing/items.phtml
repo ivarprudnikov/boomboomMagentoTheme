@@ -1,0 +1,41 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php if ($this->getQuote()->hasVirtualItems()): ?>
+    <div class="col2-set">
+        <h2 class="legend"><?php echo $this->__('Other Items in Your Order') ?></h2>
+        <div class="col-1 col-narrow"></div>
+        <div class="col-2 col-wide">
+            <h3><?php echo $this->__('Items') ?> <span class="separator">|</span> <a href="<?php echo $this->getVirtualProductEditUrl() ?>"><?php echo $this->__('Edit Items') ?></a></h3>
+            <table class="data-table" id="unavailable-shipping-table">
+                <col />
+                <col width="1" />
+                <thead>
+                    <tr>
+                        <th><?php echo $this->__('Product Name') ?></th>
+                        <th class="a-center"><?php echo $this->__('Qty') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->getVirtualQuoteItems() as $_item): ?>
+                    <tr>
+                        <td><?php echo $this->getItemHtml($_item) ?></td>
+                        <td class="a-center"><?php echo $_item->getQty() ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <script type="text/javascript">decorateTable('unavailable-shipping-table')</script>
+        </div>
+    </div>
+<?php endif; ?>

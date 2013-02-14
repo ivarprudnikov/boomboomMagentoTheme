@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Boomboom_Shoppage>
+			<version>0.1.0</version>
+		</Boomboom_Shoppage>
+	</modules>
+    <frontend>
+		<routers>
+			<shoppage>
+				<use>standard</use>
+				<args>
+					<module>Boomboom_Shoppage</module>
+					<frontName>shoppage</frontName>
+				</args>
+			</shoppage>
+		</routers>
+		<!-- Layout updates through catalog.xml shoppage_index_index -->
+    </frontend>
+	<global>
+		<blocks>
+            <shoppage><class>Boomboom_Shoppage_Block</class></shoppage>
+		</blocks>
+	</global>
+</config>

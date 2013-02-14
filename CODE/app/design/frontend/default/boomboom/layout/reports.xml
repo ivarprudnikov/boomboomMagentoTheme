@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+-->
+<layout version="0.1.0">
+    <default>
+        <!-- Mage_Reports -->
+        <reference name="right">
+            <block type="reports/product_viewed" before="catalog.compare.sidebar" name="right.reports.product.viewed" template="reports/product_viewed.phtml" />
+            <block type="reports/product_compared" after="catalog.compare.sidebar" name="right.reports.product.compared" template="reports/product_compared.phtml" />
+        </reference>
+    </default>
+</layout>

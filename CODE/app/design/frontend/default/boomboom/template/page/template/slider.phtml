@@ -1,0 +1,119 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<script type="text/javascript">
+jQuery(document).ready(function($)
+{
+	$("#showcase").awShowcase(
+	{
+		content_width:			920,
+		content_height:			350,
+		hundred_percent:		false,
+		auto:					true,
+		interval:				5000,
+		continuous:				true,
+		loading:				true,
+		tooltip_width:			200,
+		tooltip_icon_width:		32,
+		tooltip_icon_height:	32,
+		tooltip_offsetx:		18,
+		tooltip_offsety:		0,
+		arrows:					true,
+		buttons:				true,
+		btn_numbers:			false,
+		keybord_keys:			true,
+		mousetrace:				false,
+		pauseonover:			true,
+		transition:				'hslide', /* hslide/vslide/fade */
+		transition_delay:		500,
+		transition_speed:		300,
+		show_caption:			'onhover', /* onload/onhover/show */
+		thumbnails:				false,
+		thumbnails_position:	'inside-last', /* outside-last/outside-first/inside-last/inside-first */
+		thumbnails_direction:	'horizontal', /* vertical/horizontal */
+		thumbnails_slidex:		0, /* 0 = auto / 1 = slide one thumbnail / 2 = slide two thumbnails / etc. */
+		dynamic_height:			false,
+		speed_change:			true,
+		viewline:				false
+	});
+});
+
+</script>
+
+<div id="showcase" class="showcase">
+		<!-- Each child div in #showcase represents a slide -->
+		<div class="showcase-slide">
+			<!-- Put the slide content in a div with the class .showcase-content. -->
+			<div class="showcase-content">
+				<img src="<?php echo $this->getSkinUrl('images/showcase/slide-10.png');?>" alt="New collection is here" />
+			</div>
+			<div class="showcase-tooltips">
+				<!-- Each anchor in .showcase-tooltips represents a tooltip. The coords attribute represents the position of the tooltip. -->
+				<a href="#" coords="634,130">
+					<!-- The content of the anchor-tag is displayed in the tooltip. -->
+					This is a tooltip that displays the anchor html in a nice way.
+				</a>
+				<a href="#" coords="200,440">
+					This is a tooltip that displays the anchor html in a nice way.
+				</a>
+			</div>
+		</div>
+		<!-- Each child div in #showcase represents a slide -->
+		<div class="showcase-slide">
+			<!-- Put the slide content in a div with the class .showcase-content. -->
+			<div class="showcase-content">
+				<img src="<?php echo $this->getSkinUrl('images/showcase/03.jpg');?>" alt="03" />
+			</div>
+			<!-- Put the caption content in a div with the class .showcase-caption -->
+			<div class="showcase-caption">
+				It's a flying wasp. <a href="http://www.flickr.com/photos/ninedragons/4822437519/">Photo from flickr</a>
+			</div>
+		</div>
+		<!-- Each child div in #showcase represents a slide -->
+		<div class="showcase-slide">
+			<!-- Put the slide content in a div with the class .showcase-content. -->
+			<div class="showcase-content">
+				<img src="<?php echo $this->getSkinUrl('images/showcase/02.jpg');?>" alt="02" />
+			</div>
+			<!-- Put the tooltips in a div with the class .showcase-tooltips. -->
+			<div class="showcase-tooltips">
+				<!-- Each anchor in .showcase-tooltips represents a tooltip. The coords attribute represents the position of the tooltip. -->
+				<a href="#" coords="634,130">
+					<!-- The content of the anchor-tag is displayed in the tooltip. -->
+					This is a tooltip that displays the anchor html in a nice way.
+				</a>
+				<a href="#" coords="200,440">
+					This is a tooltip that displays the anchor html in a nice way.
+				</a>
+				<a href="#" coords="600,440">
+					This is a tooltip that displays the anchor html in a nice way.
+				</a>
+				<a href="#" coords="356, 172">
+					<!-- You can add multiple elements to the anchor-tag which are displayed in the tooltip. -->
+					<img src="<?php echo $this->getSkinUrl('images/showcase/glasses.png');?>" alt="00000000000000000000" />
+					<span style="display: block; font-weight: bold; padding: 3px 0 3px 0; text-align: center;">
+						White Glasses: 500$
+					</span>
+				</a>
+			</div>
+		</div>
+		<!-- Each child div in #showcase represents a slide -->
+		<div class="showcase-slide">
+			<!-- Put the slide content in a div with the class .showcase-content. -->
+			<div class="showcase-content">
+				<iframe src="http://player.vimeo.com/video/24496773?title=0&amp;byline=0&amp;portrait=0" width="920" height="350" frameborder="0"></iframe>
+			</div>
+		</div>
+	</div>
+	
+</div>

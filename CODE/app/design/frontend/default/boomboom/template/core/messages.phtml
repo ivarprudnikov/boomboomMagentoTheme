@@ -1,0 +1,34 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php  foreach ($types as $type) {
+            if ( $messages = $this->getMessages($type) ) {
+                if ( !$html ) {
+                    $html .= '<ul id="messages">';
+                }
+                $html .= '<li class="' . $type . '-msg">';
+                $html .= '<ul>';
+
+                foreach ( $messages as $message ) {
+                    $html.= '<li>';
+                    $html.= $message->getText();
+                    $html.= '</li>';
+                }
+                $html .= '</ul>';
+                $html .= '</li>';
+            }
+        }
+        if ( $html) {
+            $html .= '</ul>';
+        }
+?>

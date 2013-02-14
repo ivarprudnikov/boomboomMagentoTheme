@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ * 
+ * Adding more page layouts to Mage_Page
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    boomboom_AdditionalLayouts
+ * @copyright  Copyright (c) 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @version    1.0.0
+ */
+-->
+<config>
+	<modules>
+        <Boomboom_AdditionalLayouts>
+            <version>1.0.0</version>
+        </Boomboom_AdditionalLayouts>
+    </modules>
+	<global>
+		<cms>
+			<layouts>
+				<three_columns_left_lr module="page" translate="label">
+                    <label>3 columns Left LR</label>
+                    <template>page/3columns-left-lr.phtml</template>
+                    <layout_handle>page_three_columns_left_lr</layout_handle>
+                </three_columns_left_lr>
+				<three_columns_left_rl module="page" translate="label">
+                    <label>3 columns Left RL</label>
+                    <template>page/3columns-left-rl.phtml</template>
+                    <layout_handle>page_three_columns_left_rl</layout_handle>
+                </three_columns_left_rl>
+				<three_columns_right_lr module="page" translate="label">
+                    <label>3 columns Right LR</label>
+                    <template>page/3columns-right-lr.phtml</template>
+                    <layout_handle>page_three_columns_right_lr</layout_handle>
+                </three_columns_right_lr>
+				<three_columns_right_rl module="page" translate="label">
+                    <label>3 columns Right RL</label>
+                    <template>page/3columns-right-rl.phtml</template>
+                    <layout_handle>page_three_columns_right_rl</layout_handle>
+                </three_columns_right_rl>
+			</layouts>
+		</cms>
+	</global>
+</config>

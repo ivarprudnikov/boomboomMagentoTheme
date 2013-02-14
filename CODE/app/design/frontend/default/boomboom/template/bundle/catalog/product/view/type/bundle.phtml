@@ -1,0 +1,32 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+?>
+<?php $_product = $this->getProduct() ?>
+
+<?php if($_product->isSaleable()): ?>
+<script type="text/javascript">
+//<![CDATA[
+    var bundle = new Product.Bundle(<?php echo $this->getJsonConfig() ?>);
+//]]>
+</script>
+<?php endif; ?>
+<?php if ($_product->isAvailable()): ?>
+    <p class="availability in-stock"><?php /* echo $this->helper('catalog')->__('Availability:') */ ?> <span><?php echo $this->helper('catalog')->__('In stock') ?></span></p>
+<?php else: ?>
+    <p class="availability out-of-stock"><?php /* echo $this->helper('catalog')->__('Availability:') */ ?> <span><?php echo $this->helper('catalog')->__('Out of stock') ?></span></p>
+<?php endif; ?>
+<div class="price-box-bundle">
+    <?php echo $this->getPriceHtml($_product) ?>
+</div>
+<?php echo $this->getChildHtml('bundle_prices') ?>

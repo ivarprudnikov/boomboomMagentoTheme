@@ -1,0 +1,33 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php if ($_products = $this->getRecentlyComparedProducts()): ?>
+<div class="widget widget-compared">
+    <div class="block block-list">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('Recently Compared') ?></span></strong>
+        </div>
+        <div class="block-content">
+            <?php $suffix = $this->getNameInLayout(); ?>
+            <ol id="widget-compared-<?php echo $suffix; ?>">
+            <?php $i=0; foreach ($_products as $_product): ?>
+                <li class="item">
+                    <p class="product-name"><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->helper('catalog/output')->productAttribute($_product, $_product->getName() , 'name') ?></a></p>
+                </li>
+            <?php endforeach; ?>
+            </ol>
+            <script type="text/javascript">decorateList('widget-compared-<?php echo $suffix; ?>', 'none-recursive')</script>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,30 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php
+/**
+ * @var $this Mage_Sales_Block_Order_Comments
+ * @see Mage_Sales_Block_Order_Comments
+ */
+?>
+<?php if ($this->hasComments()):?>
+    <div class="order-additional order-comments">
+        <h2 class="sub-title"><?php echo $this->getTitle() ?></h2>
+        <dl class="order-about">
+            <?php foreach ($this->getComments() as $_commentItem): ?>
+                <dt><?php echo $this->formatDate($_commentItem->getCreatedAtStoreDate(), 'medium', true) ?></dt>
+                <dd><?php echo $this->escapeHtml($_commentItem->getComment()) ?></dd>
+            <?php endforeach; ?>
+        </dl>
+    </div>
+<?php endif;?>

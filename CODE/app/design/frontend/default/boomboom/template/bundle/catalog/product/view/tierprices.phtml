@@ -1,0 +1,28 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+
+<?php
+/**
+ * @see Mage_Catalog_Block_Product_View
+ */
+$_product = $this->getProduct();
+$_tierPrices = $this->getTierPrices();
+?>
+<?php if (count($_tierPrices) > 0): ?>
+    <ul class="tier-prices product-pricing">
+    <?php foreach($_tierPrices as $_price): ?>
+        <li><?php echo $this->__('Buy %1$s with %2$s discount each', $_price['price_qty'], '<strong class="benefit">'.($_price['price']*1).'%</strong>') ?></li>
+    <?php endforeach ?>
+    </ul>
+<?php endif;?>

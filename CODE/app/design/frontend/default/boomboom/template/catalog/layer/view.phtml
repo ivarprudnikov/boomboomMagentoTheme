@@ -1,0 +1,52 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @see Mage_Catalog_Block_Layer_View
+ */
+?>
+<?php if($this->canShowBlock()): ?>
+<div class="block block-layered-nav">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Filter results') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <?php echo $this->getStateHtml() ?>
+        <?php if($this->canShowOptions()): ?>
+            <ul id="narrow-by-list">
+                <?php $_filters = $this->getFilters() ?>
+                <?php foreach ($_filters as $_filter): ?>
+                <?php if($_filter->getItemsCount()): ?>
+                    <li id="<?php echo $this->__($_filter->getName()) ?>"><span><?php echo $this->__($_filter->getName()) ?></span>
+					<?php echo $_filter->getHtml() ?>
+					</li>
+                <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+            <script type="text/javascript">decorateDataList('narrow-by-list')</script>
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					// Code that uses jQuery's $ can follow here.
+				$("#narrow-by-list li").click(function() {
+				$($(this).children('ol')).slideToggle('fast','linear');
+				return true;
+				});
+				});
+			</script>
+        <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>

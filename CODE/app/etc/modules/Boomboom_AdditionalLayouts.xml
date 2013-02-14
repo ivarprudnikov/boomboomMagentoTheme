@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Boomboom_AdditionalLayouts>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Boomboom_AdditionalLayouts>
+    </modules>
+</config>

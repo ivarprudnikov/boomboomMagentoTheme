@@ -1,0 +1,243 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php
+$_helper = $this->helper('catalog/output');
+$_product = $this->getProduct();
+$sort = Mage::getModel('catalog/session');
+$order = strtolower($sort->getSortOrder());
+$direction = strtolower($sort->getSortDirection());
+if ($direction == "") {
+	$direction = 'asc';
+}
+if ($order == "") {
+	$order = Mage::getStoreConfig('catalog/frontend/default_sort_by');
+}
+if ( $this->helper('catalog/data')->getCategory() ) {
+	$currentCategory = Mage::registry('current_category')->getId();
+	$category_products = Mage::getModel('catalog/category')->load($currentCategory)->getProductCollection();
+} else {
+	$category_products = Mage::getModel('catalog/product')->getResourceCollection();
+}
+$category_products->addAttributeToSort($order,$direction);
+$category_products->addAttributeToFilter('status',1); /* 1 or 2 */
+$category_products->addAttributeToFilter('visibility',4); /* 1.2.3.4 */
+
+// Generate array from product collection products ids
+$cat_prod_ids = array();
+	foreach($category_products as $prod) {
+		$cat_prod_ids[] = $prod->getId();
+	}
+// Determine the previous/next link and link to current category
+$_product_id = $_product->getId();
+$_pos = array_search($_product_id, $cat_prod_ids);
+$_next_pos = $_pos+1;
+$_prev_pos = $_pos-1;
+// get the next product url
+	if( isset($cat_prod_ids[$_next_pos]) ) {
+		$_next_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_next_pos] );
+	}
+	else {
+		$_next_prod = NULL;
+	}
+// get the prev product url
+	if( isset($cat_prod_ids[$_prev_pos]) ) {
+		$_prev_prod = Mage::getModel('catalog/product')->load( $cat_prod_ids[$_prev_pos] );
+	}
+	else {
+		$_prev_prod = NULL;
+	}
+?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view">
+
+<div id="prev-next-nav">
+	
+		<div id="link-backtocategory">
+		<?php $categories = $_product->getCategoryIds(); ?>
+		<?php foreach($categories as $k => $_category_id): ?>
+		<?php $_category = Mage::getModel('catalog/category')->load($_category_id) ?>
+			<a href="<?php echo $_category->getUrl() ?>">
+				<?php echo $this->__('Category') ?> - <?php echo $_category->getName() ?>
+			</a>
+		<?php endforeach; ?>
+		</div>
+	
+		<div id="prev-next-links">
+		
+			<?php if($_prev_prod != NULL): ?>
+				<a id="link-previous-product" href="<?php print $_prev_prod->getUrlPath(); ?>"><&nbsp;Previous&nbsp;item
+					<span id="img-previous-product" style="display:none;">
+						<img src="<?php echo $this->helper('catalog/image')->init(Mage::getModel('catalog/product')->load($_prev_prod->getId()), 'thumbnail')->resize(100, 100) ?>" title="<?php echo $this->htmlEscape($_prev_prod->getName()) ?>" alt="<?php echo $this->htmlEscape($_prev_prod->getName()) ?>" height="100" width="100" />
+					</span>
+				</a>
+			<?php endif; ?>
+		
+			<?php if($_next_prod != NULL): ?>
+				<a id="link-next-product" href="<?php print $_next_prod->getUrlPath(); ?>">Next&nbsp;item&nbsp;>
+					<span id="img-next-product" style="display:none;">
+						<img src="<?php echo $this->helper('catalog/image')->init(Mage::getModel('catalog/product')->load($_next_prod->getId()), 'thumbnail')->resize(100, 100) ?>" title="<?php echo $this->htmlEscape($_next_prod->getName()) ?>" alt="<?php echo $this->htmlEscape($_next_prod->getName()) ?>" height="100" width="100" />
+					</span>
+				</a>
+			<?php endif; ?>
+		</div>
+		<div class="clear"></div>
+</div>
+<script type="text/javascript">
+$('link-previous-product').observe('mouseover', function() {$('img-previous-product').show();});
+$('link-previous-product').observe('mouseout', function() {$('img-previous-product').hide();});
+$('link-next-product').observe('mouseover', function() {$('img-next-product').show();});
+$('link-next-product').observe('mouseout', function() {$('img-next-product').hide();});
+</script>
+
+    <div class="product-essential">
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+
+        <div class="product-shop">
+			<!-- Product name -->
+            <div class="product-name">
+                <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+				<h2><?php echo 'Item code: '.$_helper->productAttribute($_product, $_product->getSku(), 'sku') ?></h2>
+            </div>
+			
+			<?php /* Although someone will find it as a good marketing attribute, I am removing it without any doubts! We need a better share option container! */ ?>
+			<!--
+			<?php if ($this->canEmailToFriend()): ?>
+                <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
+            <?php endif; ?>
+			-->
+			
+			<!-- small review rating block -->
+            <?php echo $this->getReviewsSummaryHtml($_product, short /* false - default */, true /* if is visible when no reviews found */ )?>
+			
+			<!-- alerts -->
+            <?php echo $this->getChildHtml('alert_urls') ?>
+			
+			<!-- availability and price -->
+			<?php echo $this->getChildHtml('product_type_data') ?>
+			
+			<!-- short description -->
+			<?php if ($_product->getShortDescription()):?>
+                <div class="short-description">
+                    <!-- <h2><?php echo $this->__('Short description') ?></h2> -->
+                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                </div>
+            <?php endif;?>
+			
+			<!-- tier price block -->
+			<?php echo $this->getTierPriceHtml() ?>
+            <?php echo $this->getChildHtml('extrahint') ?>
+			
+			<!-- Price and actions -->
+            <?php if (!$this->hasOptions()):?>
+                <div class="add-to-box">
+					<?php echo $this->getPriceHtml($_product) ?>
+                    <?php if($_product->isSaleable()): ?>
+                        <?php echo $this->getChildHtml('addtocart') ?>
+                    <?php endif; ?>
+                    <?php echo $this->getChildHtml('addto') ?>
+                </div>
+            <?php endif; ?>
+			
+			<!-- eg back link in reviews -->
+            <?php echo $this->getChildHtml('other');?>
+			
+			<!-- options container 1 -->
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+            <?php endif;?>
+
+        </div>
+		
+		<!-- visual part -->
+        <div class="product-img-box">
+            <?php echo $this->getChildHtml('media') ?>
+        </div>
+		
+        <div class="clearer"></div>
+		
+		<!-- options container 2 -->
+        <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+        <?php endif;?>
+		
+    </form>
+	
+    <script type="text/javascript">
+    //<![CDATA[
+		var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+    //]]>
+    </script>
+    </div>
+	
+    <div class="product-collateral">
+        <?php echo $this->getChildHtml('info_tabs') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+		<?php echo $this->getChildHtml('product_reviews') ?>
+		<?php echo $this->getChildHtml('product_review_form') ?>
+    </div>
+	<?php echo $this->getChildHtml('upsell_products') ?>
+</div>

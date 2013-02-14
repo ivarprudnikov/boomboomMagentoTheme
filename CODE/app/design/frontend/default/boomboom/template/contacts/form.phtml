@@ -1,0 +1,104 @@
+<?php
+/**
+ * Boomboom for Magento 1.5.1.0
+ * Made by Shildek (http://shildek.com)
+ * Distributed by ThemeForest (http://themeforest.net)
+ *
+ * @author     Aivaras Prudnikovas
+ * @package    default_boomboom
+ * @copyright  Copyright 2011 Aivaras Prudnikovas (http://ivarprudnikov.com)
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+
+<div class="page-title m20-b">
+    <h1><?php echo Mage::helper('contacts')->__('Contact Us') ?></h1>
+</div>
+
+
+<div class="page-contacts">
+	<div class="grid_5 alpha">
+		<div class="back-color p30">
+			<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+				
+					<h3><?php echo Mage::helper('contacts')->__('Contact form') ?></h3>
+					<ul class="form-list">
+						<li>
+							<label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name') ?></label>
+							<div class="input-box">
+							<input type[name] name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+							</div>
+						</li>
+						<li>
+							<label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
+							<div class="input-box">
+							<input type[email] name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+							</div>
+						</li>
+						<li>
+							<label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
+							<div class="input-box">
+							<input type[phone] name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+							</div>
+						</li>
+						<li>
+							<label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Comment') ?></label>
+							<div class="input-box">
+							<textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+							</div>
+						</li>
+					</ul>
+				
+					<p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+					<input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+					<button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+				
+			</form>
+		</div>
+	</div>
+	
+	<div class="grid_7 omega">
+		
+		<div class="grid_7 alpha omega">
+			<div class="back-color p20 m20-b">
+				The place for callout
+			</div>
+		</div>
+		
+		<div class="grid_3 alpha">
+			<div class="back-color-light p20">
+				<h3>Address</h3>
+				<address>
+					Big Brand Boom Ltd<br />
+					The place in woods<br />
+					Park Avenue<br />
+					Dublin 7<br />
+					IRELAND<br /><br />
+					
+					+353 (0) 86 2000001<br />
+					+353 (0) 86 2000002<br />
+				</address>
+			</div>
+		</div>
+
+		<div class="grid_4 omega">
+			<div class="back-color-light p20">
+				<h3>Directions</h3>
+				<div class="script"></div>
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="clear"></div>
+	
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>
